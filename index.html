@@ -1,17 +1,64 @@
-<!DOCTYPE html>
-<html lang="ru">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Формы входа и регистрации</title>
-<link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet" />
 <script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="js/controls.js"></script>
 <script src="js/less.min.js"></script>
 </head>
 <body >
+	<div class="wrapper">
 
+		<!--Первая форма. Вход -->
+		<div class="form-group formblock" id="enter">
+			<div class="form-header">
+				<h2 class="form-name">Вход</h2>
+				<a href="#reg"><span class="form-name-small">Регистрация</span></a>
+			</div>
+			<div class="form-body">
+				<form action="#" role="form">
+					<input type="text" class="form-email" name="enteremail" placeholder="Электронная почта">
+					<input type="text" class="form-pass" name="enterepass" placeholder="Пароль">
+					<button type="submit" class="form-button-enter">Войти</button>
+					<a href="#repair"><span class="form-repair-pass">Забыли пароль?</span></a>
+				</form>
+			</div>
+		</div>
 
+		<!--Вторая форма. регистрация -->
+		<div class="form-group formblock" id="reg">
+			<div class="form-header">
+				<h2 class="form-name">Регистрация</h2>
+				<a href="#enter"><span class="form-name-small">Вход</span></a>
+			</div>
+			<div class="form-body">
+				<form action="#" role="form">
+					<input type="text" class="form-email" name="regemail" placeholder="Электронная почта">
+					<input type="text" class="form-pass" name="regpass" placeholder="Пароль">
+					<input type="text" class="form-pass" name="regrepeat" placeholder="Повторите пароль">
+					<button type="submit" class="form-button-enter">Зарегистрироваться</button>
+				</form>
+			</div>
+		</div>
+
+		<!--Третья форма. Восстановление пароля -->
+		<div class="form-group formblock" id="repair">
+			<div class="form-header">
+				<h2 class="form-name">Пароль потерялся</h2>
+				<a href="#enter"><span class="form-name-small">Вход</span></a>
+			</div>
+			<div class="form-body">
+				<form action="#" role="form">
+					<span>Мы вышлем письмо для смены пароля на электронную почту, указанную при регистрации</span>
+					<input type="text" class="form-pass" name="repairemail" placeholder="Электронная почта">
+					<button type="submit" class="form-button-enter">Отправить</button>
+				</form>
+			</div>
+		</div>
+		
+		
+	</div>
 </body>
 </html>
