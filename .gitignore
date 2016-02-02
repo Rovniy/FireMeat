@@ -1,0 +1,9 @@
+/bower_components
+/node_modules
+/MockUp_Dec_IT
+/.idea
+/assets/img
+/Source
+/_windows
+/inspection
+*.xml

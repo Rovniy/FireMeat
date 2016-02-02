@@ -1,0 +1,39 @@
+{
+  "name": "template",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Megasmit"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "~0.14.3",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "angular-ui-validate": "~1.2.1",
+    "angular-ui": "~0.4.0",
+    "jquery-ui": "~1.11.4",
+    "Swiper": "swiper#~3.2.6",
+    "zeroclipboard": "~2.2.0",
+    "LockableStorage": "~0.0.1"
+  },
+  "dependencies": {
+    "jQuery-ui-Slider-Pips": "jquery-ui-slider-pips#~1.11.1",
+    "jsoneditor": "~4.2.1",
+    "angular-sanitize": "~1.4.8",
+    "angular-cookies": "~1.4.8",
+    "angular-file-upload": "~2.2.0",
+    "jquery.cookie": "jquery-cookie#~1.4.1"
+  }
+}
