@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html ng-app="fire" lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='yandex-verification' content='6f674c46f5e4700a' />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="Доставка самого вкусного и сочного шашлыка в любую точку города Москва. Мясо для шашлыка, люля-кебаб, овощи гриль, лук примаринованный, картофель запеченый, кныш с зеленью, айран" />
+	<meta name="keywords" content="Шашлык из баранины, баранина маринованная, люля-кебаб из баранины, картофель запеченый, лук примаринованый, овощи-гриль, овощи свежие, кинза, петрушка, базалик, кныш с зеленью, соус острый, соус загадочный, соус удивительный, айран" />
+	<meta name="author" content="Андрей (Ravy) Ровный" />
+	<title>Огонь! Шашлык. - Самый свежий и вкусный шашлык в г.Москва!</title>
+	<link rel="shortcut icon"  href="favicon.png" type="image/x-icon" />
+	<link href="/css/style.css" rel="stylesheet">
+	<script src="/js/script.js"></script>
+</head>
+<body ng-controller="allPage">
+<div class="container-fluid">
+	<div id="anchortop"class="row logo">
+		<img src="img/logo.png"/>
+	</div>
+	<div class="row phone-one">
+		<h3>Доставка шашлыка из баранины по Москве</h3>
+	</div>
+	<div class="row phone-two">
+		<h3>+7 (495) 792 00 25<br/>+7 (903) 792 00 25</h3>
+	</div>
+	<div ng-hide="allSuccess">
+		<div ng-show="hideTable > 0 && !showCart || closeAll" class="row cart">
+			<span>Товаров в корзине: {{hideTable}}</span>
+		</div>
+		<div ng-hide="showCart || contactData" ng-repeat="row in tovari" class="row items">
+			<div class="row title">
+				<h3><img ng-src="img/items/item{{row.id}}.png"/> {{row.name}}</h3>
+			</div>
+			<div class="row parent descDiv">
+				<div class="items-decs">
+					<span>{{row.decs}}</span>
+				</div>
+				<div class="items-meta">
+					<span>{{base.config.portions}} {{row.mass}} {{base.config.massaIcon}}</span>
+					<span>{{base.config.cost}} {{row.cost}} {{base.config.costIcon}}</span>
+				</div>
+			</div>
+			<div class="row buttonDiv">
+				<button ng-click="addToCart(row.id)" class="btn btn-lg btn-success">
+					В корзину
+				</button>
+			</div>
+		</div>
+		<div ng-show="showCart && !contactData"  class="row cart">
+			<h3>Корзина</h3>
+			<table class="table">
+				<thead>
+				<tr>
+					<td>Название товара</td>
+					<td>Кол-во</td>
+					<td>Стоимость</td>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="row in cartData">
+					<td>{{row.name}}</td>
+					<td>
+						<div class="input-group spinner">
+							<input type="text" ng-model="row.count" class="form-control" value="42">
+							<div class="input-group-btn-vertical">
+								<button class="btn btn-default" ng-click="countColl('plus', row.id)" type="button"><i class="fa fa-caret-up"></i></button>
+								<button class="btn btn-default" ng-click="countColl('minus', row.id)" type="button"><i class="fa fa-caret-down"></i></button>
+							</div>
+						</div>
+					</td>
+					<td>{{row.cost * row.count}}</td>
+					<td><i ng-click="removeFromCart(row.id)" class="calcelItem fa fa-times"></i></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Общая стоимость: </td>
+					<td>{{allSum}}</td>
+					<td></td>
+				</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-danger" ng-click="showCart = false"><i class="fa fa-arrow-left"></i> Назад</button>
+			<button class="btn btn-success" ng-click="contactData = true">Продолжить оформление</button>
+		</div>
+		<div ng-show="hideTable > 0 && !showCart" class="row cartIndex">
+			<a class="btn btn-danger" ng-click="showCart = true; gotoAnchor('top')">Корзина ({{hideTable}})</a>
+		</div>
+		<div ng-show="contactData && !paymentData"  class="row contactData">
+			<h3>Контакты и адрес доставки</h3>
+			<div class="form-group">
+				<input class="form-control width70P" type="text" placeholder="Ваш телефон" ng-model="enterPhone"/>
+			</div>
+			<div ng-show="enterPhone.length > 9">
+				<h3>Адрес доставки</h3>
+				<div class="form-group">
+					<input class="form-control width70P" type="text" placeholder="Улица" ng-model="enterStreet"/>
+				</div>
+				<div class="form-group">
+					<input class="form-control width70P" type="text" placeholder="Номер дома" ng-model="enterHomeNumber"/>
+				</div>
+				<div class="form-group">
+					<input class="form-control width70P" type="text" placeholder="Подъезд" ng-model="enterPodezd"/>
+				</div>
+				<div class="form-group">
+					<input class="form-control width70P" type="text" placeholder="Этаж" ng-model="enterFloor"/>
+				</div>
+				<div class="form-group">
+					<input class="form-control width70P" type="text" placeholder="Квартира" ng-model="enterDoor"/>
+				</div>
+			</div>
+			<div ng-show="enterPhone.length > 9">
+				<h3>Способ оплаты</h3>
+				<div class="form-group">
+					<label>
+						<input type="radio" name="address" ng-model="payType" value="nal">
+						<span class="middle"> Наличными курьеру</span>
+					</label>
+					<label>
+						<input type="radio" name="address" ng-model="payType" value="beznal">
+						<span class="middle"> Безналиный расчет</span>
+					</label>
+				</div>
+			</div>
+			<div ng-hide="enterPhone.length > 9">
+				<h3>Введите контактный номер телефона</h3>
+			</div>
+			<button class="btn btn-danger" ng-click="contactData = false"><i class="fa fa-arrow-left"></i> Назад</button>
+			<button ng-show="payType=='nal' && enterStreet.length > 2 && enterPhone.length > 9" class="btn btn-success" ng-click="confirmAll()">Отправить заказ</button>
+			<button ng-show="payType=='beznal' && enterStreet.length > 2 && enterPhone.length > 9" class="btn btn-success" ng-click="paymentData = true">Выбрать способ оплаты</button>
+		</div>
+		<div ng-show="paymentData" class="row contactData">
+		<form action="https://money.yandex.ru/eshop.xml" method="post">
+			<input name="shopId" value="115755" type="hidden"/>
+			<input name="scid" value="45168" type="hidden"/>
+			<input name="sum" value="{{allSum}}" type="hidden">
+			<input name="customerNumber" value="{{userIDD}}" type="hidden"/>
+			<input name="shopSuccessURL" value="огонь-шашлык.москва" type="hidden"/>
+			<input name="shopFailURL" value="огонь-шашлык.москва" type="hidden"/>
+			<input name="cps_phone" value="{{enterPhone}}" type="hidden"/>
+			<input name="paymentType" value="{{paymentType}}" type="hidden"/>
+
+			<input name="custAddr" value="Улица: {{enterStreet}}, дом {{enterHomeNumber}}, подъезд: {{enterPodezd}}, этаж: {{enterFloor}}, квартира: {{enterDoor}}" type="hidden"/>
+
+			<div class="form-group">
+				<label>
+					<input type="radio" ng-model="paymentType" value="AC">
+					<span class="middle payment-big-icons-bankcards"> </span>
+					<span class="middle"> Банковской картой VISA / MasterCard</span>
+				</label>
+			</div>
+			<div class="form-group">
+				<label>
+					<input type="radio" ng-model="paymentType" value="GP">
+					<span class="middle payment-big-icons-terminals"> </span>
+					<span class="middle"> Наличными в любом терминале</span>
+				</label>
+			</div>
+			<div class="form-group">
+				<label>
+					<input type="radio" ng-model="paymentType" value="WQ">
+					<span class="middle payment-big-icons-qiwi-click"> </span>
+					<span class="middle"> QIWI Wallet</span>
+				</label>
+			</div>
+			<div class="form-group">
+				<label>
+					<input type="radio" ng-model="paymentType" value="PC">
+					<span class="middle payment-big-icons-yandex-dengi"> </span>
+					<span class="middle"> Яндекс.Деньги</span>
+				</label>
+			</div>
+			<div class="form-group">
+				<label>
+					<input type="radio" ng-model="paymentType" value="WM">
+					<span class="middle payment-big-icons-webmoney-rub"> </span>
+					<span class="middle"> Webmoney</span>
+				</label>
+			</div>
+			<div class="form-group">
+				<label>
+					<input type="radio" ng-model="paymentType" value="MP">
+					<span class="middle payment-big-icons-mobile-online"> </span>
+					<span class="middle"> Мобильные терминалы</span>
+				</label>
+			</div>
+
+			<a class="btn btn-danger" ng-click="paymentData = false"><i class="fa fa-arrow-left"></i> Назад</a>
+			<input type="submit" class="btn btn-success" value="Оплатить покупки">
+		</form>
+	</div>
+	</div>
+	<div ng-show="allSuccess" class="row about">
+		<h2 class="ta-center" >Больбое спасибо за заказ =)</h2>
+		<h3 class="ta-center">Очень скоро мы свяжемся с Вами для уточнения заказа.</h3>
+	</div>
+	<div ng-show="allError" class="row about">
+	<h3>У нас возникла ошибка, пожалуйста, для оформления заказ позвоните нам.</h3>
+</div>
+	<div ng-hide="showCart" class="row about">
+		<h3>О нас</h3>
+		<p>Наконец-то в Москве появился самый сочный и вкусный шашлык! И за ним никуда не нужно ехать – его привозят вам! Домой, в офис, на вечеринку. И все, что вам нужно – это просто зайти на сайт, выбрать блюдо и набрать наш номер! Мы – первая компания на Юго-западе Москвы, которая специализируется только на приготовлении и срочной доставке шашлыка. Наше фермерское хозяйство находится в Подмосковье. Поэтому все наши блюда из экологически чистой баранины. У нас не просто повара, а повара-мангальщики! Это специалисты высокой квалификации и они готовят так, чтобы каждое выбранное вами блюдо, было сытным, полезным и невероятно вкусным!</p>
+	</div>
+	<div ng-hide="showCart" class="row otzivi">
+		<h3>Отзывы покупателей</h3>
+		<div class="row otziv">
+			<h3>Алиса Романова, 20 лет, менеджер</h3>
+			<p>Вчера закали бараний шашлык с гарниром из овощей. Приехало все горячее и очень вкусное. Спасибо большое!</p>
+		</div>
+		<div class="row otziv">
+			<h3>Илья, 35 лет, предприниматель</h3>
+			<p>Заказывал на большую компанию на 5000 руб., привезли все быстро, курьье добрый и приличный. Единственное, что не понравилось, что на большую компанию маловато приборов и салфеток, пришлось докупать в магазине. А так - спасибо за прекрасный ужин под бокс.</p>
+		</div>
+		<div class="row otziv">
+			<h3>Маргарите Хомутова, 20 лет, студентка</h3>
+			<p>Очень вкусные люля-кебаб. Буду теперь брать только у вас. Распробовала))</p>
+		</div>
+		<div class="row otziv">
+			<h3>Ирина, 37 лет</h3>
+			<p>Брали на всю семью, дети довольны. Быстро и горячо, очень мягкое и вкусное меся. Спасибо большое!</p>
+		</div>
+	</div>
+	<div class="row footer">
+		<p>© 2016 Огонь-шашлык.москва</p>
+		<a href="http://огонь-шашлык.москва">Полная версия сайта</a>
+	</div>
+
+</div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35088055 = new Ya.Metrika({
+                    id:35088055,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

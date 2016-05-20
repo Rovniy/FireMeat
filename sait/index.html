@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
-<html lang="ru">
+<html ng-app="fire" lang="ru">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name='yandex-verification' content='6f674c46f5e4700a' />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=1400, initial-scale=1">
 <meta name="description" content="Доставка самого вкусного и сочного шашлыка в любую точку города Москва. Мясо для шашлыка, люля-кебаб, овощи гриль, лук примаринованный, картофель запеченый, кныш с зеленью, айран" />
 <meta name="keywords" content="Шашлык из баранины, баранина маринованная, люля-кебаб из баранины, картофель запеченый, лук примаринованый, овощи-гриль, овощи свежие, кинза, петрушка, базалик, кныш с зеленью, соус острый, соус загадочный, соус удивительный, айран" />
 <meta name="author" content="Андрей (Ravy) Ровный" />
@@ -13,53 +13,15 @@
 <link href="/css/style.css" rel="stylesheet">
 <script src="/js/script.js"></script>
 </head>
-<body>
+<body ng-controller="allPage">
 <div class="pagebutton visible-lg visible-md">
 	<a class="ancLinks" id="RightBanner" href="#slol">
 		<img src="img/pagebutton.png"/>
 	</a>
 </div>
 <div class="container">
-	<!------------------------- HEADER Маленький дисплей -------------------------------->
-	<div class="row hidden-lg">
-		<div id="mobileheightlogo" class="col-sm-6 col-xs-6 sm-logo">
-		</div>
-		<div id="mobileheight" class="col-sm-6 col-xs-6">
-			<div class="row sm-menu">
-				<div class="col-sm-6 col-xs-6">
-					<ul>
-						<li><a class="ancLinks" href="#about">О Нас</a></li>
-						<li><a class="ancLinks" href="#infoarea">Доставка</a></li>
-					
-					</ul>
-				</div>
-				<div class="col-sm-6 col-xs-6">
-					<ul>
-						<li><a class="ancLinks" href="#otzivi">Отзывы</a></li>
-						<li><a class="ancLinks" href="#contacts">Контакты</a></li>
-					</ul>
-				</div>	
-			</div>
-			<div class="row sm-phones hidden-xs">
-				<p><i class="fa fa-phone hidden-xs"></i> +7(495) 792 00 25</p>
-				<p><i class="fa fa-phone hidden-xs"></i> +7(903) 792 00 25</p>
-			</div>
-			<div class="row xs-phones visible-xs">
-				<p><i class="fa fa-phone"></i> +7(495) 792 00 25</p>
-				<p><i class="fa fa-phone"></i> +7(903) 792 00 25</p>
-			</div>
-			<div class="row sm-meta">
-				<div class="row hidden-xs">
-					<p><i class="fa fa-clock-o"></i> Обработка заказа - 5 мин</p>
-				</div>
-				<div class="row">
-					<span><i class="fa fa-shopping-cart"></i> <a class="ancLinks" href="#table">Корзина</a></span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!------------------------- HEADER большой дисплей -------------------------------->
-	<div class="row header visible-lg">
+		<!------------------------- HEADER большой дисплей -------------------------------->
+	<div class="row header">
 		<div class="logodiv">
 			<a href="#"><img src="img/logo.png"/></a>
 		</div>
@@ -77,7 +39,13 @@
 					<span><a href="#infoarea" class="ancLinks">Обработка заказа - 5 мин</a></span>
 				</div>
 				<div class="col-lg-4 right">
-					<span><a class="ancLinks" href="#table">В корзине</a><br/><small><a class="ancLinks" id="topPrice" href="#table">пока ничего нет</a></small></span>
+					<span>
+						<a class="ancLinks" href="#table">В корзине</a><br/>
+						<small>
+							<a ng-hide="hideTable > 0" class="ancLinks" id="topPrice" href="#table">пока ничего нет</a>
+							<a ng-show="hideTable > 0" class="ancLinks" id="topPrice" href="#table">товаров - {{hideTable}} ({{allSum}} руб.)</a>
+						</small>
+					</span>
 				</div>
 			</div>
 			<div class="row phones">
@@ -181,475 +149,226 @@
 	
 	</div>
 	<div id="slol" class="row stol">
-	<div class="row">
-		<h1>Собирайте поляну!</h1>
-	</div>
+		<div class="row">
+			<h1>Собирайте поляну!</h1>
+		</div>
 		<div class="col-lg-5">
 			<div class="cover">
 				<div class="row title">
 					<span>Мясные блюда</span>
 				</div>
 				<div class="row">
-					<div class="col-lg-4">
-						<div id="sha-hover" class="onhover bcolor1">
+					<div ng-repeat="row in tovari | filter: { category: 'meet' }" class="col-lg-4">
+						<div ng-click="showInfo = !showInfo" ng-show="showInfo" class="onhover bcolor{{row.id}}">
 							<div class="image">
-								<img src="img/zak/sha-hov.png"/>
+								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 							<div class="desc">
-								<span>Мясо молодого барашка, маринованное в минеральной воде приготовленное на мангале с добавлением специй (соль, перец, лук)
-</span>
+								<span>{{row.decs}}</span>
 								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
+								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
+								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
 							</div>
 						</div>
-						<img id="sha-grey" class="ngrey" src="img/zak/sha-gr.png"/>
-						<img id="sha-click-img" class="normcol" src="img/zak/sha-col.png"/>
-							<span id="sha-click" class="color1 click">Узнать</span>
-						/ 
-							<span id="sha-select">Выбрать</span>
-					</div>
-					<div class="col-lg-4">
-						<div id="bar-hover" class="onhover bcolor2">
-							<div class="image">
-								<img src="img/zak/bar-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Ароматное, вкусное и простое в приготовлении блюдо.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="bar-grey" class="ngrey" src="img/zak/bar-gr.png"/>
-						
-							<img id="bar-click-img" class="normcol" src="img/zak/bar-col.png"/>
-						
-						
-							<span id="bar-click" class="color2 click">Узнать</span>
-						
-						/ 
-						
-							<span id="bar-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-						<div id="lulya-hover" class="onhover bcolor3">
-							<div class="image">
-								<img src="img/zak/lulya-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Люля-кебаб - кавказское мясное блюдо, фарш, зажаренный на шампуре.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="lulya-grey" class="ngrey" src="img/zak/lulya-gr.png"/>
-						
-							<img id="lulya-click-img" class="normcol" src="img/zak/lulya-col.png"/>
-						
-						
-							<span id="lulya-click" class="color3 click">Узнать</span>
-						
-						/ 
-						
-							<span id="lulya-select">Выбрать</span>
-						
+						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
+						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-click="showInfo = !showInfo" ng-src="img/zak/{{row.trans}}-col.png"/>
+						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
 				<div class="row ptop20 title">
 					<span>Гарниры</span>
 				</div>
 				<div class="row">
-					<div class="col-lg-4">
-						<div id="cart-hover" class="onhover bcolor4">
+					<div ng-repeat="row in tovari | filter: { category: 'garniers' }" class="col-lg-4">
+						<div ng-click="showInfo = !showInfo" ng-show="showInfo" class="onhover bcolor{{row.id}}">
 							<div class="image">
-								<img src="img/zak/cart-hov.png"/>
+								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 							<div class="desc">
-								<span>Блюдо, которое может быть как простым, так и праздничным, изысканным.</span>
+								<span>{{row.decs}}</span>
 								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
+								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
+								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
 							</div>
 						</div>
-						<img id="cart-grey" class="ngrey" src="img/zak/cart-gr.png"/>
-						
-							<img id="cart-click-img" class="normcol" src="img/zak/cart-col.png"/>
-						
-						
-							<span id="cart-click" class="color4 click">Узнать</span>
-						
-						/ 
-						
-							<span id="cart-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-						<div id="luk-hover" class="onhover bcolor5">
-							<div class="image">
-								<img src="img/zak/luk-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Простая и ароматная закуска, которую обычно подают к шашлыку.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="luk-grey" class="ngrey" src="img/zak/luk-gr.png"/>
-						
-							<img id="luk-click-img" class="normcol" src="img/zak/luk-col.png"/>
-						
-						
-							<span id="luk-click" class="color5 click">Узнать</span>
-						
-						/ 
-						
-							<span id="luk-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-						<div id="ovosh-hover" class="onhover bcolor6">
-							<div class="image">
-								<img src="img/zak/ovosh-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Здоровая альтернатива блюдам из жаренных продуктов.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="ovosh-grey" class="ngrey" src="img/zak/ovosh-gr.png"/>
-						
-							<img id="ovosh-click-img" class="normcol" src="img/zak/ovosh-col.png"/>
-						
-						
-							<span id="ovosh-click" class="color6 click">Узнать</span>
-						
-						/ 
-						
-							<span id="ovosh-select">Выбрать</span>
-						
-					</div>
-				</div>
-				<div class="row ptop20">
-					<div class="col-lg-4">
-						<div id="fresh-hover" class="onhover bcolor7">
-							<div class="image">
-								<img src="img/zak/fresh-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Мы лично проверили качество продуктов.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="fresh-grey" class="ngrey" src="img/zak/fresh-gr.png"/>
-						
-							<img id="fresh-click-img" class="normcol" src="img/zak/fresh-col.png"/>
-						
-						
-							<span id="fresh-click" class="color7 click">Узнать</span>
-						
-						/ 
-						
-							<span id="fresh-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-						<div id="kinza-hover" class="onhover bcolor8">
-							<div class="image">
-								<img src="img/zak/kinza-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Старый кавказский обычай заедать шашлыки целыми пучками зелени.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="kinza-grey" class="ngrey" src="img/zak/kinza-gr.png"/>
-						
-							<img id="kinza-click-img" class="normcol" src="img/zak/kinza-col.png"/>
-						
-						
-							<span id="kinza-click" class="color8 click">Узнать</span>
-						
-						/ 
-						
-							<span id="kinza-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-						<div id="knish-hover" class="onhover bcolor9">
-							<div class="image">
-								<img src="img/zak/knish-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Небольшого размера, внутрь может укладываться начинка.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="knish-grey" class="ngrey" src="img/zak/knish-gr.png"/>
-						
-							<img id="knish-click-img" class="normcol" src="img/zak/knish-col.png"/>
-						
-						
-							<span id="knish-click" class="color9 click">Узнать</span>
-						
-						/ 
-						
-							<span id="knish-select">Выбрать</span>
-						
+						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
+						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-click="showInfo = !showInfo" ng-src="img/zak/{{row.trans}}-col.png"/>
+						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
 				<div class="row ptop20 title">
 					<span>Соусы</span>
 				</div>
 				<div class="row">
-					<div class="col-lg-4">
-						<div id="ostr-hover" class="onhover bcolor10">
+					<div ng-repeat="row in tovari | filter: { category: 'sous' }" class="col-lg-4">
+						<div ng-click="showInfo = !showInfo" ng-show="showInfo" class="onhover bcolor{{row.id}}">
 							<div class="image">
-								<img src="img/zak/ostr-hov.png"/>
+								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 							<div class="desc">
-								<span>Гурманам известно, что шашлык нужно подавать с вкусным соусом.</span>
+								<span>{{row.decs}}</span>
 								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
+								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
+								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
 							</div>
 						</div>
-						<img id="ostr-grey" class="ngrey" src="img/zak/ostr-gr.png"/>
-						
-							<img id="ostr-click-img" class="normcol" src="img/zak/ostr-col.png"/>
-						
-						
-							<span id="ostr-click" class="color10 click">Узнать</span>
-						
-						/ 
-						
-							<span id="ostr-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-						<div id="zagad-hover" class="onhover bcolor11">
-							<div class="image">
-								<img src="img/zak/zagad-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Такой соус подчеркнет вкус мяса, сделав его еще более совершенным.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="zagad-grey" class="ngrey" src="img/zak/zagad-gr.png"/>
-						
-							<img id="zagad-click-img" class="normcol" src="img/zak/zagad-col.png"/>
-						
-						
-							<span id="zagad-click" class="color11 click">Узнать</span>
-						
-						/ 
-						
-							<span id="zagad-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-						<div id="udiv-hover" class="onhover bcolor12">
-							<div class="image">
-								<img src="img/zak/udiv-hov.png"/>
-							</div>
-							<div class="desc">
-								<span>Соус может превратить блюдо в «конфетку», придать ему обновлённый вид и вкус.</span>
-								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
-							</div>
-						</div>
-						<img id="udiv-grey" class="ngrey" src="img/zak/udiv-gr.png"/>
-						
-							<img id="udiv-click-img" class="normcol" src="img/zak/udiv-col.png"/>
-						
-						
-							<span id="udiv-click" class="color12 click">Узнать</span>
-						
-						/ 
-						
-							<span id="udiv-select">Выбрать</span>
-						
+						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
+						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-click="showInfo = !showInfo" ng-src="img/zak/{{row.trans}}-col.png"/>
+						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
 				<div class="row ptop20 title">
 					<span>Айран</span>
 				</div>
 				<div class="row">
-					<div class="col-lg-4">
-						<div id="airan-hover" class="onhover bcolor13">
+					<div ng-repeat="row in tovari | filter: { category: 'airan' }" class="col-lg-4">
+						<div ng-click="showInfo = !showInfo" ng-show="showInfo" class="onhover bcolor{{row.id}}">
 							<div class="image">
-								<img src="img/zak/airan-hov.png"/>
+								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 							<div class="desc">
-								<span>Рецепт айрана, известен на Кавказе и в Средней Азии уже много веков.</span>
+								<span>{{row.decs}}</span>
 								<hr/>
-								<span>Порция: 150 г</span><br/>
-								<span>Цена: 240 р</span>
+								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
+								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
 							</div>
 						</div>
-						<img id="airan-grey" class="ngrey" src="img/zak/airan-gr.png"/>
-						
-							<img id="airan-click-img" class="normcol" src="img/zak/airan-col.png"/>
-						
-						
-							<span id="airan-click" class="color13 click">Узнать</span>
-						
-						/ 
-						
-							<span id="airan-select">Выбрать</span>
-						
-					</div>
-					<div class="col-lg-4">
-					</div>
-					<div class="col-lg-4">
+						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
+						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-click="showInfo = !showInfo" ng-src="img/zak/{{row.trans}}-col.png"/>
+						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!---------------------------------------- поляна -------------------------->
 		<div class="col-lg-7 green-palace">
-		
 			<div class="row small row1">
 				<div class="col-lg-4">
 				</div>
 				<div class="col-lg-2">
-					<div id="item1" class="item item1">
-						<img src="img/items/item1.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+					<div ng-if="cartData.item8" class="item item8">
+						<img src="img/items/item8.png"/>
+						<div ng-click="removeFromCart('8')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2">
-					<div id="item2" class="item item2">
-						<img src="img/items/item2.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+					<div ng-if="cartData.item9" class="item item9">
+						<img src="img/items/item9.png"/>
+						<div ng-click="removeFromCart('9')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 				</div>
 			</div>
-			
 			<div class="row small row2">
 				<div class="col-lg-2">
 				</div>
 				<div class="col-lg-2">
-					<div id="item3" class="item item3">
-						<img src="img/items/item3.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+					<div ng-if="cartData.item6" class="item item6">
+						<img src="img/items/item6.png"/>
+						<div ng-click="removeFromCart('6')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2">
-					<div id="item4" class="item item4">
-						<img src="img/items/item4.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div id="item5" class="item item5">
+					<div ng-if="cartData.item5" class="item item5">
 						<img src="img/items/item5.png"/>
 						<div class="close">
-						<i class="fa fa-close"></i>
+							<i ng-click="removeFromCart('5')" class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2">
-					<div id="item6" class="item item6">
-						<img src="img/items/item6.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+					<div ng-if="cartData.item4" class="item item4">
+						<img src="img/items/item4.png"/>
+						<div ng-click="removeFromCart('4')" class="close">
+							<i class="fa fa-close"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<div ng-if="cartData.item7" class="item item7">
+						<img src="img/items/item7.png"/>
+						<div ng-click="removeFromCart('7')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2">
 				</div>
 			</div>
-			
 			<div class="row big row3">
 				<div class="col-lg-4 st1">
-					<div id="item7" class="item item7">
-						<img src="img/items/item7.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+					<div ng-if="cartData.item1" class="item item1">
+						<img src="img/items/item1.png"/>
+						<div ng-click="removeFromCart('1')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 st2">
-					<div id="item8" class="item item8">
-						<img src="img/items/item8.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+					<div ng-if="cartData.item2" class="item item2">
+						<img src="img/items/item2.png"/>
+						<div ng-click="removeFromCart('2')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 st3">
-					<div id="item9" class="item item9">
-						<img src="img/items/item9.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+					<div ng-if="cartData.item3" class="item item3">
+						<img src="img/items/item3.png"/>
+						<div ng-click="removeFromCart('3')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 			</div>
-			
 			<div class="row small row4">
 				<div class="col-lg-3">
 				</div>
 				<div class="col-lg-2">
-					<div id="item10" class="item item10">
+					<div ng-if="cartData.item10"  class="item item10">
 						<img src="img/items/item10.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+						<div ng-click="removeFromCart('10')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2">
-					<div id="item11" class="item item11">
+					<div ng-if="cartData.item11" class="item item11">
 						<img src="img/items/item11.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+						<div ng-click="removeFromCart('11')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2">
-					<div id="item12" class="item item12">
+					<div ng-if="cartData.item12" class="item item12">
 						<img src="img/items/item12.png"/>
-						<div class="close">
-						<i class="fa fa-close"></i>
+						<div ng-click="removeFromCart('12')" class="close">
+							<i class="fa fa-close"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3">
 				</div>
 			</div>
-			
 			<div class="row small row5">
 				<div class="col-lg-5">
 				</div>
 				<div class="col-lg-2">
-				<div id="item13" class="item item13">
+					<div ng-if="cartData.item13" class="item item13">
 						<img src="img/items/item13.png"/>
-						<div class="close">
+						<div ng-click="removeFromCart('13')" class="close">
 							<i class="fa fa-close"></i>
 						</div>
 					</div>
@@ -657,10 +376,10 @@
 				<div class="col-lg-5">
 				</div>
 			</div>
-
 		</div>
 	</div>
-	<div id="table" class="row raschet">
+	<!------------------------------- Таблица с расчетами ----------------------------->
+	<div ng-show="hideTable > 0" id="table" class="row raschet">
 		<div class="centerdiv">
 			<table id="maintable">
 				<tr class="title"> 
@@ -668,40 +387,49 @@
 					<th></th>
 					<th>Порция</th>
 					<th></th>
-					<th>Вес</th>
-					<th>Цена</th>
+					<th>Вес (г.)</th>
+					<th>Цена (руб.)</th>
+					<th>Убрать</th>
 				</tr>
-			</table>
-			<table class="bottable">
-			<tr>
+				<tr ng-repeat="row in cartData">
+					<td>{{row.name}}</td>
+					<td><i ng-click="countColl('plus', row.id)" class="pluscost arrows fa fa-arrow-up"></i> </td>
+					<td class="counttovar">{{row.count}}</td>
+					<td><i ng-click="countColl('minus', row.id)" class="minuscost fa fa-arrow-down arrows"></i></td>
+					<td>{{row.mass * row.count}}</td>
+					<td>{{row.cost * row.count}}</td>
+					<td><i ng-click="removeFromCart(row.id)"class="fa fa-times deletePosition"></i></td>
+				</tr>
+				<tr class="top-bordered">
 					<td>Общий чек</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td id="EndMass"></td>
-					<td id="EndCost"></td>
+					<td>{{allMass}}</td>
+					<td>{{allSum}}</td>
+					<td></td>
 				</tr>
 			</table>
-			<div class="row sposobioplati">
+			<div ng-show="hideTable > 0" class="row sposobioplati">
 				<div class="col-lg-3">
 					СПОСОБЫ ОПЛАТЫ:
 				</div>
 				<div class="col-lg-3 nalichka">
-					<input type="radio" class="radio" name="oplata" checked id="radio1">
+					<input type="radio" class="radio pointerInput" ng-model="radio" name="oplata" checked="checked" value="Оплата курьеру"/>
 					<span> наличный расчет</span><br/> <italic>(курьеру при доставке)</italic>
 				</div>
 				<div class="col-lg-5 beznal">
-					<input type="radio" class="radio" name="oplata" id="radio2"><span> безналичный расчет</span><br/><italic>(обязательно сообщите о желании оплатить картой диспетчеру при обратном звонке, курьер приедет к вам с терминалом)</italic>
+					<input type="radio" class="radio pointerInput" ng-model="radio" name="oplata" value="Безналичный расчет"/><span> безналичный расчет</span><br/><italic>(обязательно сообщите о желании оплатить картой диспетчеру при обратном звонке, курьер приедет к вам с терминалом)</italic>
 				</div>
 			</div>
 			
 		</div>	
 	</div>
-	<div id="table" class="row tablediv">
+	<div ng-show="radio && hideTable > 0" id="table" class="row tablediv">
 		<div class="centerdiv">
 			<div class="row moreinfo">
 			ДОПОЛНИТЕЛЬНО: 
-			<input id="message" type="text" placeholder="Ваши пожелания к заказу..." class="dopinfo"></input>
+			<input type="text" ng-model="messega" placeholder="Ваши пожелания к заказу..." class="dopinfo"/>
 			</div>
 			<div class="row subbut">
 				<button data-toggle="modal" data-target="#myModal">Оформить заказ</button>
@@ -748,17 +476,17 @@
 				<p class="text">Вчера закали бараний шашлык с гарниром из овощей. Приехало все горячее и очень вкусное. Спасибо большое!</p>
 				<p class="time">2.12.2015</p>
 			</div>
-			<div class="otvet" id="ot1">
+			<div class="otvet" id="ot2">
 				<p class="name">Илья, 35 лет, предприниматель</p>
 				<p class="text">Заказывал на большую компанию на 5000 руб., привезли все быстро, курьье добрый и приличный. Единственное, что не понравилось, что на большую компанию маловато приборов и салфеток, пришлось докупать в магазине. А так - спасибо за прекрасный ужин под бокс.</p>
 				<p class="time">4.12.2015</p>
 			</div>
-			<div class="otvet" id="ot1">
+			<div class="otvet" id="ot3">
 				<p class="name">Маргарите Хомутова, 20 лет, студентка</p>
 				<p class="text">Очень вкусные люля-кебаб. Буду теперь брать только у вас. Распробовала))</p>
 				<p class="time">8.12.2015</p>
 			</div>
-			<div class="otvet" id="ot1">
+			<div class="otvet" id="ot4">
 				<p class="name">Ирина, 37 лет</p>
 				<p class="text">Брали на всю семью, дети довольны. Быстро и горячо, очень мягкое и вкусное меся. Спасибо большое!</p>
 				<p class="time">8.12.2015</p>
@@ -794,9 +522,12 @@
 
 		</div>	
 	</div>
+	<div id="contacts" class="row footer">
+		<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=VEixqDynJTDW-fMsoDzIgo23A4wAx0H1&width=1051&height=362&lang=ru_RU&sourceType=constructor&scroll=true"></script>
+	</div>
 	<div class="row bottom">
 			<div class="col-lg-4 copy">
-				<span>&copy 2015 Ogony!shashlik<br/>Доставка шашлыка из баранины по Москве</span>
+				<span>&copy 2015 огонь-шашлык.москва<br/>Доставка шашлыка из баранины по Москве</span>
 			</div>	
 			<div class="col-lg-4 centerblock">
 				<ul>
@@ -836,31 +567,33 @@
 <!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-forms">
-			<div class="modal-contacts">
+			<div ng-show="radio == 'Оплата курьеру'" class="modal-contacts">
 				<div class="modal-header" id="modal-header">
 					<h4 class="modal-title modal-title-forms" id="myModalLabel">Оформление заказа</h4>
 				</div>
 				<div class="modal-body-forms" id="formText">
-					<input type="text" class="form-control modalPhone" id="formPhone" placeholder="Ваш телефон">
-					<h3>Адрес доставки</h3>
-					<input type="text" class="form-control modalStreet" id="formStreet" placeholder="Улица">
-					<form class="form-inline topPad20" role="form">
-					  <div class="form-group">
-						<input type="text" class="form-control modalHome" id="formHome" placeholder="Номер дома">
-					  </div>
-					  <div class="form-group padLeft20">
-						<input type="text" class="form-control modalNumberHome" id="formNumberHome" placeholder="Подъезд">
-					  </div>
-					</form>
-					<form class="form-inline topPad20 padBot50" role="form">
-					  <div class="form-group">
-						<input type="text" class="form-control modalFlour" id="formFlour" placeholder="Этаж">
-					  </div>
-					  <div class="form-group padLeft20 ">
-						<input type="text" class="form-control modalNumber" id="formNumber" placeholder="Квартира">
-					  </div>
-					</form>
-					<a  href="#" id="sumbtn" class="modalSubmit">Подтвердить заказ</a> 
+					<input type="tel" class="form-control modalPhone" ng-model="phone" id="formPhone" placeholder="Ваш телефон">
+					<div ng-show="phone.length > 9">
+						<h3>Адрес доставки</h3>
+						<input type="text" class="form-control modalStreet" ng-model="street" id="formStreet" placeholder="Улица">
+						<form class="form-inline topPad20" role="form">
+						  <div class="form-group">
+							<input type="text" class="form-control modalHome" ng-model="home" id="formHome" placeholder="Номер дома">
+						  </div>
+						  <div class="form-group padLeft20">
+							<input type="text" class="form-control modalNumberHome" ng-model="doors" id="formNumberHome" placeholder="Подъезд">
+						  </div>
+						</form>
+						<form class="form-inline topPad20 padBot50" role="form">
+						  <div class="form-group">
+							<input type="text" class="form-control modalFlour" ng-model="floor" id="formFlour" placeholder="Этаж">
+						  </div>
+						  <div class="form-group padLeft20 ">
+							<input type="text" class="form-control modalNumber" ng-model="homeNumber" id="formNumber" placeholder="Квартира">
+						  </div>
+						</form>
+					</div>
+						<button ng-show="street.length > 2" ng-click="confirmAll()" class="modalSubmit">Подтвердить заказ</button>
 				</div>
 				<div class="modal-body-success" id="formSussecc">
 					<h3>Ваш заказ сформирован и отправлен к нам. Мы свяжемся с Вами в ближайшее время для уточнения заказа.<br/>Спасибо, что выбрали именно нас!</h3>
@@ -869,9 +602,118 @@
 					<h3>На сайте произошла ошибка. Приносим свои извинения! Обратитесь по телефону:<br/>+7(495) 792 00 25<br/>чтобы сформировать Ваш заказ!</h3>
 				</div>
 			</div>
+			<div ng-hide="paymentArea || radio !== 'Безналичный расчет'" class="modal-contacts">
+				<div class="modal-header" id="modal-header">
+					<h4 class="modal-title modal-title-forms" id="myModalLabel">Оформление заказа</h4>
+				</div>
+				<div class="modal-body-forms" id="formText">
+					<input type="tel" class="form-control modalPhone" ng-model="phone" id="formPhone" placeholder="Ваш телефон">
+					<div ng-show="phone.length > 9">
+						<h3>Адрес доставки</h3>
+						<input type="text" class="form-control modalStreet" ng-model="street" id="formStreet" placeholder="Улица">
+						<form class="form-inline topPad20" role="form">
+							<div class="form-group">
+								<input type="text" class="form-control modalHome" ng-model="home" id="formHome" placeholder="Номер дома">
+							</div>
+							<div class="form-group padLeft20">
+								<input type="text" class="form-control modalNumberHome" ng-model="doors" id="formNumberHome" placeholder="Подъезд">
+							</div>
+						</form>
+						<form class="form-inline topPad20 padBot50" role="form">
+							<div class="form-group">
+								<input type="text" class="form-control modalFlour" ng-model="floor" id="formFlour" placeholder="Этаж">
+							</div>
+							<div class="form-group padLeft20 ">
+								<input type="text" class="form-control modalNumber" ng-model="homeNumber" id="formNumber" placeholder="Квартира">
+							</div>
+						</form>
+					</div>
+					<button ng-show="street.length > 2" ng-click="paymentArea = true" class="modalSubmit">Подтвердить заказ</button>
+				</div>
+				<div class="modal-body-success" id="formSussecc">
+					<h3>Ваш заказ сформирован и отправлен к нам. Мы свяжемся с Вами в ближайшее время для уточнения заказа.<br/>Спасибо, что выбрали именно нас!</h3>
+				</div>
+				<div class="modal-body-success" id="formError">
+					<h3>На сайте произошла ошибка. Приносим свои извинения! Обратитесь по телефону:<br/>+7(495) 792 00 25<br/>чтобы сформировать Ваш заказ!</h3>
+				</div>
+			</div>
+			<div ng-show="paymentArea" class="modal-contacts">
+				<div class="modal-header" id="modal-header">
+					<h4 class="modal-title modal-title-forms" id="myModalLabel">Выберите способ оплаты</h4>
+				</div>
+				<div class="row">
+					<div class="paySelect">
+						<form action="https://money.yandex.ru/eshop.xml" method="post">
+							<input name="shopId" value="115755" type="hidden"/>
+							<input name="scid" value="45168" type="hidden"/>
+							<input name="sum" value="{{allSum}}" type="hidden">
+							<input name="customerNumber" value="{{userIDD}}" type="hidden"/>
+							<input name="shopSuccessURL" value="http://огонь-шашлык.москва" type="hidden"/>
+							<input name="shopFailURL" value="http://огонь-шашлык.москва" type="hidden"/>
+							<input name="cps_phone" value="{{phone}}" type="hidden"/>
+							<input name="paymentType" value="{{paymentType}}" type="hidden"/>
+							<input name="custAddr" value="Улица: {{street}}, дом {{home}}, подъезд: {{doors}}, этаж: {{floor}}, квартира: {{homeNumber}}" type="hidden"/>
+
+							<div class="form-group">
+								<label>
+									<input type="radio" ng-model="paymentType" value="AC">
+									<span class="middle payment-big-icons-bankcards"> </span>
+									<span class="middle"> Банковской картой VISA / MasterCard</span>
+								</label>
+							</div>
+							<div class="form-group">
+								<label>
+									<input type="radio" ng-model="paymentType" value="GP">
+									<span class="middle payment-big-icons-terminals"> </span>
+									<span class="middle"> Наличными в любом терминале</span>
+								</label>
+							</div>
+							<div class="form-group">
+								<label>
+									<input type="radio" ng-model="paymentType" value="WQ">
+									<span class="middle payment-big-icons-qiwi-click"> </span>
+									<span class="middle"> QIWI Wallet</span>
+								</label>
+							</div>
+							<div class="form-group">
+								<label>
+									<input type="radio" ng-model="paymentType" value="PC">
+									<span class="middle payment-big-icons-yandex-dengi"> </span>
+									<span class="middle"> Яндекс.Деньги</span>
+								</label>
+							</div>
+							<div class="form-group">
+								<label>
+									<input type="radio" ng-model="paymentType" value="WM">
+									<span class="middle payment-big-icons-webmoney-rub"> </span>
+									<span class="middle"> Webmoney</span>
+								</label>
+							</div>
+							<div class="form-group">
+								<label>
+									<input type="radio" ng-model="paymentType" value="MP">
+									<span class="middle payment-big-icons-mobile-online"> </span>
+									<span class="middle"> Мобильные терминалы</span>
+								</label>
+							</div>
+							<div class="ta-center">
+								<a href="javascript:;;" ng-click="paymentArea = false"><i class="fa fa-arrow-left"></i> Назад</a>
+								<input type="submit" ng-click="confirmAll('card')" class="modalSubmit" value="Оплатить покупки">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 <!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-forms successForm">
+		<h2>Спасибо за заказ =)</h2>
+		<h3>Мы очень скоро свяжемся с Вами для уточнения заказа.</h3>
+	</div>
+</div>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -901,5 +743,10 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <!-- /Yandex.Metrika counter -->
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = '3Mk07nszQQ';
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
 </body>
 </html>

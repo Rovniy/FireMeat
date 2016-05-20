@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="fire" lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='yandex-verification' content='6f674c46f5e4700a' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Доставка самого вкусного и сочного шашлыка в любую точку города Москва. Мясо для шашлыка, люля-кебаб, овощи гриль, лук примаринованный, картофель запеченый, кныш с зеленью, айран" />
+    <meta name="keywords" content="Шашлык из баранины, баранина маринованная, люля-кебаб из баранины, картофель запеченый, лук примаринованый, овощи-гриль, овощи свежие, кинза, петрушка, базалик, кныш с зеленью, соус острый, соус загадочный, соус удивительный, айран" />
+    <meta name="author" content="Андрей (Ravy) Ровный" />
+    <title>Огонь! Шашлык. - Самый свежий и вкусный шашлык в г.Москва!</title>
+    <link rel="shortcut icon"  href="favicon.png" type="image/x-icon" />
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="/js/script.js"></script>
+</head>
+<body ng-controller="cart">
+<div class="container-fluid">
+    <div class="row logo">
+        <img src="img/logo.png"/>
+    </div>
+    <div class="row phone-one">
+        <h3>Доставка шашлыка из баранины по Москве</h3>
+    </div>
+    <div class="row cart">
+        <span>{{}} товаров в корзине</span>
+    </div>
+    <div class="row cart">
+        <h3>Корзина</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Название товара</td>
+                <td>Кол-во</td>
+                <td>Стоимость</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in cartData">
+                <td>{{row.name}}</td>
+                <td>
+                    <div class="input-group spinner">
+                        <input type="text" ng-model="row.count" class="form-control" value="42">
+                        <div class="input-group-btn-vertical">
+                            <button class="btn btn-default" ng-click="countColl('plus', row.id)" type="button"><i class="fa fa-caret-up"></i></button>
+                            <button class="btn btn-default" ng-click="countColl('minus', row.id)" type="button"><i class="fa fa-caret-down"></i></button>
+                        </div>
+                    </div>
+                </td>
+                <td>{{row.cost * row.count}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row about">
+        <h3>О нас</h3>
+        <p>Наконец-то в Москве появился самый сочный и вкусный шашлык! И за ним никуда не нужно ехать – его привозят вам! Домой, в офис, на вечеринку. И все, что вам нужно – это просто зайти на сайт, выбрать блюдо и набрать наш номер! Мы – первая компания на Юго-западе Москвы, которая специализируется только на приготовлении и срочной доставке шашлыка. Наше фермерское хозяйство находится в Подмосковье. Поэтому все наши блюда из экологически чистой баранины. У нас не просто повара, а повара-мангальщики! Это специалисты высокой квалификации и они готовят так, чтобы каждое выбранное вами блюдо, было сытным, полезным и невероятно вкусным!</p>
+    </div>
+    <div class="row otzivi">
+        <h3>Отзывы покупателей</h3>
+        <div class="row otziv">
+            <h3>Name</h3>
+            <p>Мое мнение все равно ничего не значит</p>
+        </div>
+        <div class="row otziv">
+            <h3>Name</h3>
+            <p>Мое мнение все равно ничего не значит ое мнение все равно ничего не значитое мнение все равно ничего не значит</p>
+        </div>
+    </div>
+    <div class="row footer">
+        <p>Огонь-шашлыкюмосква</p>
+        <a href="http://огонь-шашлык.москва">Полная версия сайта</a>
+    </div>
+
+</div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35088055 = new Ya.Metrika({
+                    id:35088055,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

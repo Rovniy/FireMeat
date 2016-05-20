@@ -21,8 +21,10 @@ var vhost = require('vhost');
 var proxyMiddleware = require('http-proxy-middleware');
 
 var jsPaths = [
+    './bower_components/angular/angular.min.js',
     './assets/js/_jquery-1.11.0.min.js',
     './assets/js/bootstrap.min.js',
+    './assets/js/device.min.js',
     './assets/js/controls.js'
 ];
 
