@@ -2,6 +2,8 @@
 
 fire.controller('allPage', function ($scope, $http, $rootScope, $location) {
 
+	$scope.otzSend = false;
+	
 	//Генерация случайного числа
 	$scope.userIDD = Math.floor(Math.random( ) * (999999999999 - 9999 + 1)) + 9999;
 
@@ -52,7 +54,7 @@ fire.controller('allPage', function ($scope, $http, $rootScope, $location) {
 		if ('item'+id in $rootScope.cartData) {
 			return true;
 		}
-	}
+	};
 
 	//Удаление из корзины товаров
 	$scope.removeFromCart = function (id) {
@@ -121,6 +123,19 @@ fire.controller('allPage', function ($scope, $http, $rootScope, $location) {
 
 		}
 	};
+	
+	$scope.submitOtziv = function(text) {
+		$scope.otzData = text;
+		$scope.dataOtzPhp = "otziv.php?f="+JSON.stringify($scope.otzData);
+		$http.get($scope.dataOtzPhp).then(function(response) {
+			$scope.otzSend = true;
+			console.log('ok', response);
+		}, function(response) {
+			console.log('error', response);
+		});
+		
+		
+	}
 
 });
 

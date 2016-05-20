@@ -54,7 +54,7 @@ gulp.task('watch', function() {
         server.listen(35729, function(err) {
         if (err) return console.log(err);
 
-        gulp.watch(['./assets/less/**/*.less'],['less']);
+        gulp.watch(['./assets/less/**/*.css'],['less']);
         gulp.watch(['./assets/js/**/*.js'],['js']);
     });
     gulp.run('local-serverRu');
