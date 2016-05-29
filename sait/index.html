@@ -148,7 +148,7 @@
 	</div>
 	<div id="slol" class="row stol">
 		<div class="row">
-			<h1>Собирайте поляну!</h1>
+			<h1>Собираем корзину!</h1>
 		</div>
 		<div class="col-lg-5">
 			<div class="cover">
@@ -170,7 +170,7 @@
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
 						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-mouseenter="showInfo = true" ng-src="img/zak/{{row.trans}}-col.png"/>
-						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+<!--						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /-->
 						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
@@ -192,7 +192,7 @@
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
 						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-mouseenter="showInfo = true" ng-src="img/zak/{{row.trans}}-col.png"/>
-						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+<!--						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /-->
 						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
@@ -214,7 +214,7 @@
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
 						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-mouseenter="showInfo = true" ng-src="img/zak/{{row.trans}}-col.png"/>
-						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+<!--						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /-->
 						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
@@ -236,7 +236,7 @@
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
 						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-mouseenter="showInfo = true" ng-src="img/zak/{{row.trans}}-col.png"/>
-						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /
+<!--						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /-->
 						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
@@ -438,6 +438,9 @@
 
 	</div>
 	<div id="infoarea" class="row infoarea">
+		<div class="row">
+			<h1>Доставка и оплата</h1>
+		</div>
 		<div class="col-lg-6 left">
 			<p>Минимальная сумма заказа с 10:00 до 23:59 – 1500 р.<br/>
 			Время доставки – 2 часа.<br/><br/>
@@ -521,7 +524,11 @@
 			<ul>
 				<li><i class="fa fa-phone"></i> <a href="callto:+74957920025">+7(495) 792 00 25</a></li>
 				<li><i class="fa fa-phone"></i> <a href="callto:+79037920025">+7(903) 792 00 25</a></li>
-				<li><i class="fa fa-home"></i> ул.Осенняя 25</li>
+				<li>
+					<a class="ancLinks" href="#contacts">
+						<i class="fa fa-home"></i> ул.Осенняя 25
+					</a>
+				</li>
 			</ul>
 
 		</div>	
