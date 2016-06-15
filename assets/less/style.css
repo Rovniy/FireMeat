@@ -43,7 +43,7 @@ body{background:#fff;color:#492200}
 .menudiv .phones .right span{padding-left:80px}
 .menudiv .phones span{font-size:32px;font-weight:700}
 .topbanners img{width:893px;height:376px}
-.container .icons{text-align:center;padding:55px 0 50px}
+.container .icons{text-align:center;padding:55px 0 0; cursor:pointer;}
 .container .icons img{opacity:.9}
 .container .icons img:hover{opacity:1}
 .icons .img1{padding-left:140px}
@@ -58,9 +58,9 @@ body{background:#fff;color:#492200}
 .invite .col-lg-6+.col-lg-6 ul li a{color:#f39200}
 .invite .col-lg-6+.col-lg-6 ul li a:hover{color:inherit}
 .stol{background:#492200;padding-bottom:20px}
-.stol .cover{padding-left:90px}
+.stol .cover{padding-left:20px}
 .stol .cover a{color:#fff}
-.stol .cover .col-lg-4{text-align:center;color:#fff;font-weight:700;font-size:13px;position:relavite}
+.stol .cover .col-lg-4{text-align:center;color:#fff;font-weight:700;font-size:13px;position:relavite; width:140px;height:155px;}
 .bcolor13,.bcolor5,.bcolor6,.bcolor7,.bcolor8,.bcolor9{color:#492200}
 .stol .cover .onhover{position:absolute;top:0;left:0;width:480px;height:128px;z-index:99;border-radius:70px;margin-left:17px}
 .stol .normcol {cursor:pointer;}
@@ -82,16 +82,16 @@ body{background:#fff;color:#492200}
 .onhover .desc hr{margin:10px 0}.stol .cover .title{padding-bottom:10px}
 .stol .cover .title span{text-align:left;color:#ee8e1b;font-weight:700;font-size:14px;padding-left:15px}
 .stol h1{background:#f7941e;padding:25px 25px 25px 100px;border-radius:0 50px 50px 0;float:left;font-weight:700;margin:30px 0}
-.green-palace{display:block;width:816px;height:754px;background:url(../../img/circle-green.png) 20px 0 no-repeat;padding:40px 0 0}
-.green-palace .row{padding:5px}
+.green-palace{display:block;}
+.green-palace .row{padding:0}
 .green-palace .big .col-lg-4{text-align:right}
 .green-palace .big .col-lg-4+.col-lg-4{text-align:center}
 .green-palace .big .col-lg-4+.col-lg-4+.col-lg-4,.raschet tr th{text-align:left}
-.cover .ngrey{display:none}.raschet{background:#492200;color:#fff}
-.tablediv{/*background:url(../../img/bg-halfcircle.png) center 0 no-repeat #f7941d;*/color:#fff;background:#f7941d;}
+.cover .ngrey{display:none}.raschet{color:#fff}
+.tablediv{/*background:url(../../img/bg-halfcircle.png) center 0 no-repeat #f7941d;*/color:#fff;}
 .tablediv-oval {background: #492200;border-bottom-left-radius: 100%;border-bottom-right-radius: 100%;}
 .centerdiv{width:800px;margin:0 auto}
-.raschet table{width:800px;font-weight:700;font-size:16px;line-height:2}
+.raschet table{width:769px;font-weight:700;font-size:16px;line-height:2}
 .raschet table .title{font-weight:400;font-size:14px;border-bottom:2px solid #fff}
 .raschet table .tovar{border-bottom:1px solid #fff;display:block}
 .raschet tr:hover{background:#666}
@@ -212,3 +212,14 @@ body{background:#fff;color:#492200}
 .otzivForm button {background:#492200;border:0;border-radius:40px;color:#fff;font-size:18px;font-weight:700;padding:10px 50px;margin:20px auto 0;}
 .otzivForm button:hover {background:#f7941e;}
 .otzivForm button:focus {outline:0;}
+
+.picnicModal {
+
+
+
+
+
+    table {
+        height:500px;
+    }
+}

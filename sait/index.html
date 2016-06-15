@@ -89,7 +89,7 @@
 			</div>
 		</div>
 	</div>
-	<!--<div class="row icons">
+	<div class="row icons" ng-click="openedIconsDesc = !openedIconsDesc">
 		<div class="col-lg-4">
 			<img class="img1" src="img/icon1.png"/>
 		</div>
@@ -99,7 +99,40 @@
 		<div class="col-lg-4">
 			<img class="img3" src="img/icon3.png"/>
 		</div>
-	</div>-->
+	</div>
+	<div class="row iconsDescription" ng-show="openedIconsDesc">
+		<div class="col-lg-4 first">
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<p>Для приготовления и доставки к Вашему столу самого вкусного шашлыка используется только молодые барашки в возрасте 7 месяцев Романовской породы, которые свободно выпасаются на полях экологически чистого района Московской области. Забой производится ежедневно, мясо сочное, без специфического запаха, попадает сразу после Вашего заказа на огонь, исключая заморозку и даже охлаждение.
+						<br/><br/>Приглашаем насладиться красотой подмосковной природы, увидеть собственными глазами стада пасущихся овец, посетить ферму хозяйства ООО «Фермер» по адресу: Еорьевский район, деревня Бормусово. Желающим можно купить мясо (тушку молодого барашка) прямо на месте.
+						<br/><br/>Предварительно звоните по телефону <b>8(926)776-80-26</b>.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 second">
+			<div class="panel panel-success">
+				<div class="panel-body">
+					<p>Мы начинаем готовить для Вас самую вкусную отборную баранину из подмосковного фермерского хозяйства ООО «Фермер» только после получения от Вас заказа. Свежее мясо маринуется супер специалистом по особенному рецепту только натуральными ингредиентами.
+						<br/><br/>Шашлык готовиться на березовых углях с добавлением щепы фруктовых деревьев и виноградной лозы, приобретая неповторимый аромат и оттенок горных трав.
+						<br/><br/>Люля-кебаб, приправленный свежими травами и натуральными специями из Армении заставит забыть Вас обо всем на свете, унося, как бесконечная песня, в чудесный мир вкуса и гастрономических наслаждений приправленный чуть прижаренным ароматом баклажана, кабачка, шампиньона, помидорчика.
+						<br/><br/><b>НАЛЕТАЙ!!!</b>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 second">
+			<div class="panel panel-danger">
+				<div class="panel-body">
+					<p>Кто может приготовить шашлык лучше молодого армянина? Есть такой! Молодой армянин Ашот Александрович!
+						<br/><br/>Отменный повар-мангальщик! 8 лет стажа работы на мангале с мясом в учреждениях России и Германии. Победитель конкурса молодых поваров-мангальщиков Армении в 2012 году. Виртуоз мясных фантазий именно на мангале. Ваш заказ будет исполнен с исключительно хорошим качеством и веселым зажигательным кавказским настроением, которое передаст и Вам силу духа и вдохновения победителя!
+						<br/><b>Попробуй! Оцени! Напиши отзыв!</b>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="row invite">
 		<div class="col-lg-6">
 			<span>Присоединяйся в соцсетях!</span>
@@ -135,20 +168,20 @@
 	</div>
 	<div class="row ads">
 		<div class="col-lg-6">
-			<a href="#">
+			<a href="" data-toggle="modal" data-target="#airanModal">
 				<img class="banner1-left" src="img/midle-banner-1.png"/>
 			</a>
 		</div>
 		<div class="col-lg-6">
-			<a href="#">
-				<img class="banner-right" src="img/midle-banner-2.png"/>
+			<a href="" data-toggle="modal" data-target="#picnicModal">
+				<img class="banner-right" src="img/midle-banner-2.jpg"/>
 			</a>
 		</div>
 	
 	</div>
 	<div id="slol" class="row stol">
 		<div class="row">
-			<h1>Собираем корзину!</h1>
+			<h1>Наше меню. Собери поляну!</h1>
 		</div>
 		<div class="col-lg-5">
 			<div class="cover">
@@ -171,6 +204,28 @@
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
 						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-mouseenter="showInfo = true" ng-src="img/zak/{{row.trans}}-col.png"/>
 <!--						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /-->
+						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
+					</div>
+				</div>
+				<div class="row ptop20 title">
+					<span>Выпечка</span>
+				</div>
+				<div class="row">
+					<div ng-repeat="row in tovari | filter: { category: 'vipechka' }" class="col-lg-4">
+						<div ng-mouseleave="showInfo = false" ng-show="showInfo" class="onhover bcolor{{row.id}}">
+							<div class="image">
+								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
+							</div>
+							<div class="desc">
+								<span>{{row.decs}}</span>
+								<hr/>
+								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
+								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
+							</div>
+						</div>
+						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
+						<img class="normcol" ng-hide="ifsearchInCart(row.id)" ng-mouseenter="showInfo = true" ng-src="img/zak/{{row.trans}}-col.png"/>
+						<!--						<span ng-click="showInfo = !showInfo" class="pointer color{{row.id}}">{{base.config.moreInfo}}</span> /-->
 						<span ng-click="addToCart(row.id)" class="pointer">{{base.config.addToCart}}</span>
 					</div>
 				</div>
@@ -219,10 +274,10 @@
 					</div>
 				</div>
 				<div class="row ptop20 title">
-					<span>Айран</span>
+					<span>Напитки</span>
 				</div>
 				<div class="row">
-					<div ng-repeat="row in tovari | filter: { category: 'airan' }" class="col-lg-4">
+					<div ng-repeat="row in tovari | filter: { category: 'drink' }" class="col-lg-4">
 						<div ng-mouseleave="showInfo = false" ng-show="showInfo" class="onhover bcolor{{row.id}}">
 							<div class="image">
 								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
@@ -244,198 +299,209 @@
 		</div>
 		<!---------------------------------------- поляна -------------------------->
 		<div class="col-lg-7 green-palace">
-			<div class="row small row1">
-				<div class="col-lg-4">
+			<div class="raspolojenie">
+				<div class="row small row1">
+					<div class="col-lg-4">
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item8" class="item item8">
+							<img src="img/items/item8.png"/>
+							<div ng-click="removeFromCart('8')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+							<div class="number">
+								<div class="number-bg">
+									<i class="fa fa-angle-up fa-2x" ng-click="countColl('plus', 8)"></i>
+									<span ng-bind="cartData.item8.count"></span>
+									<i class="fa fa-angle-down fa-2x" ng-click="countColl('minus', 8)"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item9" class="item item9">
+							<img src="img/items/item9.png"/>
+							<div ng-click="removeFromCart('9')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+					</div>
 				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item8" class="item item8">
-						<img src="img/items/item8.png"/>
-						<div ng-click="removeFromCart('8')" class="close">
-							<i class="fa fa-close"></i>
+				<div class="row small row2">
+					<div class="col-lg-2">
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item6" class="item item6">
+							<img src="img/items/item6.png"/>
+							<div ng-click="removeFromCart('6')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item5" class="item item5">
+							<img src="img/items/item5.png"/>
+							<div class="close">
+								<i ng-click="removeFromCart('5')" class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item4" class="item item4">
+							<img src="img/items/item4.png"/>
+							<div ng-click="removeFromCart('4')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item7" class="item item7">
+							<img src="img/items/item7.png"/>
+							<div ng-click="removeFromCart('7')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+					</div>
+				</div>
+				<div class="row big row3">
+					<div class="col-lg-4 st1">
+						<div ng-if="cartData.item1" class="item item1">
+							<img src="img/items/item1.png"/>
+							<div ng-click="removeFromCart('1')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 st2">
+						<div ng-if="cartData.item2" class="item item2">
+							<img src="img/items/item2.png"/>
+							<div ng-click="removeFromCart('2')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 st3">
+						<div ng-if="cartData.item3" class="item item3">
+							<img src="img/items/item3.png"/>
+							<div ng-click="removeFromCart('3')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item9" class="item item9">
-						<img src="img/items/item9.png"/>
-						<div ng-click="removeFromCart('9')" class="close">
-							<i class="fa fa-close"></i>
+				<div class="row small row4">
+					<div class="col-lg-3">
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item10"  class="item item10">
+							<img src="img/items/item10.png"/>
+							<div ng-click="removeFromCart('10')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
 						</div>
 					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item11" class="item item11">
+							<img src="img/items/item11.png"/>
+							<div ng-click="removeFromCart('11')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item12" class="item item12">
+							<img src="img/items/item12.png"/>
+							<div ng-click="removeFromCart('12')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+					</div>
 				</div>
-				<div class="col-lg-4">
+				<div class="row small row5">
+					<div class="col-lg-5">
+					</div>
+					<div class="col-lg-2">
+						<div ng-if="cartData.item13" class="item item13">
+							<img src="img/items/item13.png"/>
+							<div ng-click="removeFromCart('13')" class="close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5">
+					</div>
 				</div>
 			</div>
-			<div class="row small row2">
-				<div class="col-lg-2">
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item6" class="item item6">
-						<img src="img/items/item6.png"/>
-						<div ng-click="removeFromCart('6')" class="close">
-							<i class="fa fa-close"></i>
+			<div class="table">
+				<!------------------------------- Таблица с расчетами ----------------------------->
+				<div ng-show="hideTable > 0" id="table" class="row raschet">
+					<div class="centerdiv">
+						<table id="maintable">
+							<tr class="title">
+								<th>Название</th>
+								<th></th>
+								<th>Порция</th>
+								<th></th>
+								<th>Вес (г.)</th>
+								<th>Цена (руб.)</th>
+								<th>Убрать</th>
+							</tr>
+							<tr ng-repeat="row in cartData">
+								<td>{{row.name}}</td>
+								<td><i ng-click="countColl('plus', row.id)" class="pluscost arrows fa fa-arrow-up"></i> </td>
+								<td class="counttovar">{{row.count}}</td>
+								<td><i ng-click="countColl('minus', row.id)" class="minuscost fa fa-arrow-down arrows"></i></td>
+								<td>{{row.mass * row.count}}</td>
+								<td>{{row.cost * row.count}}</td>
+								<td><i ng-click="removeFromCart(row.id)"class="fa fa-times deletePosition"></i></td>
+							</tr>
+							<tr class="top-bordered">
+								<td>Общий чек</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>{{allMass}}</td>
+								<td>{{allSum}}</td>
+								<td></td>
+							</tr>
+						</table>
+						<div ng-show="hideTable > 0" class="row sposobioplati">
+							<div class="col-lg-3">
+								СПОСОБЫ ОПЛАТЫ:
+							</div>
+							<div class="col-lg-3 nalichka">
+								<input type="radio" class="radio pointerInput" ng-model="radio" name="oplata" checked="checked" value="Оплата курьеру"/>
+								<span> наличный расчет</span><br/> <italic>(курьеру при доставке)</italic>
+							</div>
+							<div class="col-lg-5 beznal">
+								<input type="radio" class="radio pointerInput" ng-model="radio" name="oplata" value="Безналичный расчет"/><span> безналичный расчет</span><br/><italic>(обязательно сообщите о желании оплатить картой диспетчеру при обратном звонке, курьер приедет к вам с терминалом)</italic>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item5" class="item item5">
-						<img src="img/items/item5.png"/>
-						<div class="close">
-							<i ng-click="removeFromCart('5')" class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item4" class="item item4">
-						<img src="img/items/item4.png"/>
-						<div ng-click="removeFromCart('4')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item7" class="item item7">
-						<img src="img/items/item7.png"/>
-						<div ng-click="removeFromCart('7')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2">
-				</div>
-			</div>
-			<div class="row big row3">
-				<div class="col-lg-4 st1">
-					<div ng-if="cartData.item1" class="item item1">
-						<img src="img/items/item1.png"/>
-						<div ng-click="removeFromCart('1')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 st2">
-					<div ng-if="cartData.item2" class="item item2">
-						<img src="img/items/item2.png"/>
-						<div ng-click="removeFromCart('2')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 st3">
-					<div ng-if="cartData.item3" class="item item3">
-						<img src="img/items/item3.png"/>
-						<div ng-click="removeFromCart('3')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row small row4">
-				<div class="col-lg-3">
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item10"  class="item item10">
-						<img src="img/items/item10.png"/>
-						<div ng-click="removeFromCart('10')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item11" class="item item11">
-						<img src="img/items/item11.png"/>
-						<div ng-click="removeFromCart('11')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item12" class="item item12">
-						<img src="img/items/item12.png"/>
-						<div ng-click="removeFromCart('12')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3">
-				</div>
-			</div>
-			<div class="row small row5">
-				<div class="col-lg-5">
-				</div>
-				<div class="col-lg-2">
-					<div ng-if="cartData.item13" class="item item13">
-						<img src="img/items/item13.png"/>
-						<div ng-click="removeFromCart('13')" class="close">
-							<i class="fa fa-close"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-5">
-				</div>
-			</div>
-		</div>
-	</div>
-	<!------------------------------- Таблица с расчетами ----------------------------->
-	<div ng-show="hideTable > 0" id="table" class="row raschet">
-		<div class="centerdiv">
-			<table id="maintable">
-				<tr class="title"> 
-					<th>Название</th>
-					<th></th>
-					<th>Порция</th>
-					<th></th>
-					<th>Вес (г.)</th>
-					<th>Цена (руб.)</th>
-					<th>Убрать</th>
-				</tr>
-				<tr ng-repeat="row in cartData">
-					<td>{{row.name}}</td>
-					<td><i ng-click="countColl('plus', row.id)" class="pluscost arrows fa fa-arrow-up"></i> </td>
-					<td class="counttovar">{{row.count}}</td>
-					<td><i ng-click="countColl('minus', row.id)" class="minuscost fa fa-arrow-down arrows"></i></td>
-					<td>{{row.mass * row.count}}</td>
-					<td>{{row.cost * row.count}}</td>
-					<td><i ng-click="removeFromCart(row.id)"class="fa fa-times deletePosition"></i></td>
-				</tr>
-				<tr class="top-bordered">
-					<td>Общий чек</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>{{allMass}}</td>
-					<td>{{allSum}}</td>
-					<td></td>
-				</tr>
-			</table>
-			<div ng-show="hideTable > 0" class="row sposobioplati">
-				<div class="col-lg-3">
-					СПОСОБЫ ОПЛАТЫ:
-				</div>
-				<div class="col-lg-3 nalichka">
-					<input type="radio" class="radio pointerInput" ng-model="radio" name="oplata" checked="checked" value="Оплата курьеру"/>
-					<span> наличный расчет</span><br/> <italic>(курьеру при доставке)</italic>
-				</div>
-				<div class="col-lg-5 beznal">
-					<input type="radio" class="radio pointerInput" ng-model="radio" name="oplata" value="Безналичный расчет"/><span> безналичный расчет</span><br/><italic>(обязательно сообщите о желании оплатить картой диспетчеру при обратном звонке, курьер приедет к вам с терминалом)</italic>
-				</div>
-			</div>
-			
-		</div>	
-	</div>
-	<div ng-show="radio && hideTable > 0" id="table" class="row tablediv">
-		<div class="tablediv-oval">
-			<div class="centerdiv">
-				<div class="row moreinfo">
-					ДОПОЛНИТЕЛЬНО:
-					<input type="text" ng-model="messega" placeholder="Ваши пожелания к заказу..." class="dopinfo"/>
-				</div>
-				<div class="row subbut">
-					<button data-toggle="modal" data-target="#myModal">Оформить заказ</button>
-				</div>
-			</div>
-		</div>
 
+					</div>
+				</div>
+				<div ng-show="radio && hideTable > 0" id="table" class="row tablediv">
+					<div>
+						<div class="centerdiv">
+							<div class="row moreinfo">
+								ДОПОЛНИТЕЛЬНО:
+								<input type="text" ng-model="messega" placeholder="Ваши пожелания к заказу..." class="dopinfo"/>
+							</div>
+							<div class="row subbut">
+								<button data-toggle="modal" data-target="#myModal">Оформить заказ</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="infoarea" class="row infoarea">
 		<div class="row">
@@ -443,23 +509,23 @@
 		</div>
 		<div class="col-lg-6 left">
 			<p>Минимальная сумма заказа с 10:00 до 23:59 – 1500 р.<br/>
-			Время доставки – 2 часа.<br/><br/>
-			Оплатить заказ можно следующими способами:<br/>
-			1) Наличными<br/>
-			Самый простой и привычный способ - наличными курьеру. 
-			Чаевые курьеру приветствуются, но остаются исключительно 
-			на Ваше усмотрение. </p>
+				Время доставки – 2 часа.<br/><br/>
+				Оплатить заказ можно следующими способами:<br/>
+				1) Наличными<br/>
+				Самый простой и привычный способ - наличными курьеру.
+				Чаевые курьеру приветствуются, но остаются исключительно
+				на Ваше усмотрение. </p>
 		</div>
 		<div class="col-lg-6 right">
-		Минимальная сумма заказа с 00:00 до 09:59 - 2000 р.<br/>
-		Время доставки – 2 часа. <br/><br/><br/>
-		2)Карточкой<br/>
-		Вы можете оплатить свой заказ кредитной картой. 
-		Оплата осуществляется через платежную систему банка 
-		Райффайзен Банк Аваль. 
+			Минимальная сумма заказа с 00:00 до 09:59 - 2000 р.<br/>
+			Время доставки – 2 часа. <br/><br/><br/>
+			2)Карточкой<br/>
+			Вы можете оплатить свой заказ кредитной картой.
+			Оплата осуществляется через платежную систему банка
+			Райффайзен Банк Аваль.
 		</div>
 	</div>
-	<div id="contacts" class="row footer">
+	<div class="row footer">
 		<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=VEixqDynJTDW-fMsoDzIgo23A4wAx0H1&width=100%&height=362&lang=ru_RU&sourceType=constructor&scroll=true"></script>
 	</div>
 	<div id="about" class="row about">
@@ -520,15 +586,11 @@
 				<li><a class="ancLinks" href="#infoarea">Доставка и оплата</a></li>
 			</ul>
 		</div>	
-		<div class="col-lg-4">
+		<div class="col-lg-4 contactsBg">
 			<ul>
-				<li><i class="fa fa-phone"></i> <a href="callto:+74957920025">+7(495) 792 00 25</a></li>
-				<li><i class="fa fa-phone"></i> <a href="callto:+79037920025">+7(903) 792 00 25</a></li>
-				<li>
-					<a class="ancLinks" href="#contacts">
-						<i class="fa fa-home"></i> ул.Осенняя 25
-					</a>
-				</li>
+				<li><a href="callto:+74957920025">+7(495) 792 00 25</a></li>
+				<li><a href="callto:+79037920025">+7(903) 792 00 25</a></li>
+				<li><a class="ancLinks" href="#contacts">ул.Осенняя 25</a></li>
 			</ul>
 
 		</div>	
@@ -736,6 +798,62 @@
 		</div>
 
 
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="picnicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-forms picnicModal">
+		<h3>Планируешь пикник? Мы составим тебе меню!</h3>
+		<p>Если у тебя очень загружена рабочая неделя, если выходные необходимо посвятить семейным неотложным делам и детям, если мечта о чистом воздухе, зеленой траве, звенящей тишине, головокружительном манящем запахе жареного сочного мяска отодвигается на неопределенное время – вы наш клиент!
+			<br/><br/>Все что нужно сделать – найти 3 минуты перед сном или после пробуждения, позвонить на <b>8 (495)792-0025</b> или <b>+7 (903)792-00-25</b> и назвать количество персон, время и место.
+			<br/>Или оставить заказ на сайте.
+			<br/><br/>Наша команда точно знает, как всем угодить! Мы продумаем все до мелочей и доставим еду, напитки, приборы, инвентарь к месту вашего отдыха в парк, на дачу, на рыбалку, или прямо домой.
+			<br/><br/>Предоставляем по выгодным ценам услуги по проведению мероприятий на природе (Место определяет клиент, или предлагает фирма)</p>
+
+		<p>Заказ на организацию пикника с друзьями или корпоративный барбекю на 20 и более человек принимаем не ранее чем за 3 дня до мероприятия. Место проведения в пределах г. Москва согласовываем с учетом действующего законодательства. Возможны выезды на привычные места заказчика (на дачу, рыбалку). Возможны изменения в меню в процессе обсуждения.
+			<br/><br/>Окончательная цена мероприятия формируется по договоренности.</p>
+		<img class="img-thumbnail" src="img/modalShashlic.jpg"/>
+		<div class="tablePrise">
+			<h3>Наши услуги</h3>
+			<h4>Выезд повара на мероприятие для обслуживания до 20 человек.</h4>
+			<table class="table table-striped">
+				<tbody>
+				<tr class="desc">
+					<td>Приготовление и подача блюд из продуктов заказчика</td>
+					<td>1500 руб. в час</td>
+				</tr>
+				<tr class="desc">
+					<td>Приготовление и подача блюд из продуктов фирмы</td>
+					<td>600 руб. час обслуживание + стоимость заказа по меню</td>
+				</tr>
+				</tbody>
+			</table>
+			<h4>Выезд бригады на мероприятие на природу в необустроенное место для обслуживания до 20 человек.</h4>
+			<table class="table table-striped">
+				<tbody>
+				<tr class="desc">
+					<td>Организация места проведения мероприятия, организация кухни. Приготовление и подача блюд из продуктов заказчика</td>
+					<td>3000 руб. в час</td>
+				</tr>
+				<tr class="desc">
+					<td>Организация места проведения мероприятия, кухни. Приготовление и подача блюд из продуктов фирмы. Обслуживание свыше 20 человек обсуждается при личной встрече индивидуально с заказчиком.</td>
+					<td>1500 руб в час + стоимость заказа по меню.</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<p>Чудесные места на природе в подмосковье, профессиональная команда наших поваров предоставят тебе и твоим друзьям или коллегам по цеху редчайшую возможность почувствовать настоящее удовольствие отдыха. Насладитесь отдыхом, общением, а не хлопотами по приготовлению и обслуживанию гостей!</p>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="airanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-forms picnicModal">
+		<h3>Не забывай о напитках</h3>
+		<p>Предлагаем попробовать старинный кавказский напиток «Айран». Первые упоминания о напитке «Айра» значатся 485 годом до н.э. на территории карачаевской области. Рецепт приготовления айрана долгое время хранился в тайне и передавался только по наследству из поколения в поколение. Об удивительных свойствах айрана сложены легенды. У кавказских народов этот напиток употреблялся как живительный от различных отравлений, кишечных расстройств, ожогов, ядовитых укусов. Каждый путник непременно имел при себе густой айран, как лечебное средство, а так же для утоления жажды.
+			<br/><br/>Айран повышает мышечный тонус, нормализует водно-солевой баланс, артериальное давление, улучшает работу мозга, укрепляет иммунитет - вот в чем секрет кавказского долголетия!
+			<br/><br/>Будь в тонусе – пей айран!
+		</p>
+		<img class="img-thumbnail" src="img/modalAiran.jpg"/>
 	</div>
 </div>
 
