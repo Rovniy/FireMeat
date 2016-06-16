@@ -89,7 +89,13 @@ fire.controller('allPage', function ($scope, $http, $rootScope, $location) {
 		$scope.postData = {};
 		$scope.postData.rows = [];
 		angular.forEach($rootScope.cartData, function(value) {
-			$scope.postData.rows.push(value);
+			var pushing = {
+				'id': value.id,
+				'mass': value.mass,
+				'count': value.count,
+				'cost': value.cost
+			};
+			$scope.postData.rows.push(pushing);
 		});
 		$scope.postData.allcost = $scope.allSum;
 		$scope.postData.userIDD = $scope.userIDD;

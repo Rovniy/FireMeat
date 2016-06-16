@@ -87,7 +87,7 @@
       "mass": 100,
       "id": 9,
       "trans": "knish",
-      "category": "garniers"
+      "category": "vipechka"
     },
     {
       "name": "Соус отсрый",
@@ -194,7 +194,7 @@
       "cost": 120,
       "mass": 150,
       "id": 21,
-      "trans": "pirogi_yagoda",
+      "trans": "samsa",
       "category": "vipechka"
     },
     {
@@ -265,7 +265,7 @@
       "decs": "Напиток Алтая 'Грушевый'",
       "cost": 110,
       "mass": 500,
-      "id": 28,
+      "id": 29,
       "trans": "grusheviy",
       "category": "drink"
     }
