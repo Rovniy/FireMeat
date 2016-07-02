@@ -64,38 +64,36 @@ body{background:#fff;color:#492200}
 .bcolor13,.bcolor5,.bcolor6,.bcolor7,.bcolor8,.bcolor9,.bcolor22,.bcolor28{color:#492200}
 .stol .cover .onhover{position:absolute;top:0;left:0;width:480px;height:125px;z-index:99;border-radius:70px;}
 .stol .normcol {cursor:pointer; width:125px; height:125px;}
-.bcolor1{background:#a9113c}
-.bcolor2{background:#b00061}
-.bcolor3{background:#d9232e}
-.bcolor4{background:#cc8240}
-.bcolor5{background:#fabf3a}
-.bcolor6{background:#fd6b0d}
-.bcolor7{background:#00af40}
-.bcolor8{background:#8adc64}
-.bcolor9{background:#f7e300}
-.bcolor10{background:#f42434}
-.bcolor11{background:#d8006c}
-.bcolor12{background:#e74481}
-.bcolor13{background:#4ec1ea}
-.bcolor14{background:#f16a2a}
-.bcolor15{background:#c60080}
-.bcolor16{background:#c60080}
-.bcolor17{background:#f39900}
-.bcolor18{background:#a01c05}
-.bcolor19{background:#5bad00}
-.bcolor20{background:#70269f}
-.bcolor21{background:#f16a2a}
-.bcolor22{background:#90e026}
-.bcolor23{background:#bc24e0}
-.bcolor24{background:#f28b00}
-.bcolor25{background:#4386ff}
-.bcolor26{background:#4386ff}
-.bcolor27{background:#415a39}
-.bcolor28{background:#afbd55}
-.bcolor29{background:#3c5f25}
-.onhover .image{float:left;width:125px;padding:6px 0 9px 6px;text-align:left}
-.onhover .desc{float:left;width:310px;text-align:left;padding:10px 0}
-.onhover .desc hr{margin:10px 0}.stol .cover .title{padding-bottom:10px}
+.bcolor1{background:#a9113c; border-color: #a9113c!important}
+.bcolor2{background:#b00061; border-color: #b00061!important}
+.bcolor3{background:#d9232e; border-color: #d9232e!important}
+.bcolor4{background:#cc8240; border-color: #cc8240!important}
+.bcolor5{background:#fabf3a; border-color: #fabf3a!important}
+.bcolor6{background:#fd6b0d; border-color: #fd6b0d!important}
+.bcolor7{background:#00af40; border-color: #00af40!important}
+.bcolor8{background:#8adc64; border-color: #8adc64!important}
+.bcolor9{background:#f7e300; border-color: #f7e300!important}
+.bcolor10{background:#f42434; border-color: #f42434!important}
+.bcolor11{background:#d8006c; border-color: #d8006c!important}
+.bcolor12{background:#e74481; border-color: #e74481!important}
+.bcolor13{background:#4ec1ea; border-color: #4ec1ea!important}
+.bcolor14{background:#f16a2a; border-color: #f16a2a!important}
+.bcolor15{background:#c60080; border-color: #c60080!important}
+.bcolor16{background:#c60080; border-color: #c60080!important}
+.bcolor17{background:#f39900; border-color: #f39900!important}
+.bcolor18{background:#a01c05; border-color: #a01c05!important}
+.bcolor19{background:#5bad00; border-color: #5bad00!important}
+.bcolor20{background:#70269f; border-color: #70269f!important}
+.bcolor21{background:#f16a2a; border-color: #f16a2a!important}
+.bcolor22{background:#90e026; border-color: #90e026!important}
+.bcolor23{background:#bc24e0; border-color: #bc24e0!important}
+.bcolor24{background:#f28b00; border-color: #f28b00!important}
+.bcolor25{background:#4386ff; border-color: #4386ff!important}
+.bcolor26{background:#4386ff; border-color: #4386ff!important}
+.bcolor27{background:#415a39; border-color: #415a39!important}
+.bcolor28{background:#afbd55; border-color: #afbd55!important}
+.bcolor29{background:#3c5f25; border-color: #3c5f25!important}
+.stol .cover .title{padding-bottom:10px}
 .stol .cover .title span{text-align:left;color:#ee8e1b;font-weight:700;font-size:14px;padding-left:15px}
 .stol h1{background:#f7941e;padding:25px 25px 25px 100px;border-radius:0 50px 50px 0;float:left;font-weight:700;margin:30px 0}
 .cover .ngrey{display:none}.raschet{color:#fff}
@@ -433,11 +431,34 @@ body{background:#fff;color:#492200}
   }
 }
 
+
 .stol .cover .onhover{
+  cursor:pointer;
   .image {
+    float:right;
+    width:125px;
+    padding:6px 0 9px 6px;
+    text-align:left;
     img {
-      width:113px;
-      height:113px;
+      position: absolute;
+      top: -40px;
+      right: -50px;
+      border: 10px solid;
+      border-radius: 50%;
+      width:200px;
+      height:200px;
+    }
+  }
+  .desc{
+    float:left;
+    width:330px;
+    text-align:left;
+    padding:10px 0 10px 40px;
+    hr{
+      margin:10px 0
+    }
+    .biig {
+      font-size:26px;
     }
   }
 }

@@ -198,15 +198,13 @@
 				</div>
 				<div class="row">
 					<div ng-repeat="row in tovari | filter: { category: 'meet' }" class="col-lg-4">
-						<div ng-mouseleave="showInfo = false" ng-show="showInfo" class="onhover bcolor{{row.id}}">
-							<div class="image">
-								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
-							</div>
+						<div ng-mouseleave="showInfo = false" ng-show="showInfo" ng-click="addToCart(row.id)" class="onhover bcolor{{row.id}}">
 							<div class="desc">
-								<span>{{row.decs}}</span>
-								<hr/>
-								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
-								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
+								<span>{{row.decs}}</span><br/>
+								<span class="biig">{{row.cost}} <i class="fa fa-ruble"></i> / {{row.mass}} {{base.config.massaIcon}}</span>
+							</div>
+							<div class="image">
+								<img class="bcolor{{row.id}}" ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
@@ -220,15 +218,13 @@
 				</div>
 				<div class="row">
 					<div ng-repeat="row in tovari | filter: { category: 'vipechka' }" class="col-lg-4">
-						<div ng-mouseleave="showInfo = false" ng-show="showInfo" class="onhover bcolor{{row.id}}">
-							<div class="image">
-								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
-							</div>
+						<div ng-mouseleave="showInfo = false" ng-show="showInfo" ng-click="addToCart(row.id)" class="onhover bcolor{{row.id}}">
 							<div class="desc">
-								<span>{{row.decs}}</span>
-								<hr/>
-								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
-								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
+								<span>{{row.decs}}</span><br/>
+								<span class="biig">{{row.cost}} <i class="fa fa-ruble"></i> / {{row.mass}} {{base.config.massaIcon}}</span>
+							</div>
+							<div class="image">
+								<img class="bcolor{{row.id}}" ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
@@ -242,15 +238,13 @@
 				</div>
 				<div class="row">
 					<div ng-repeat="row in tovari | filter: { category: 'garniers' }" class="col-lg-4">
-						<div ng-mouseleave="showInfo = false" ng-show="showInfo" class="onhover bcolor{{row.id}}">
-							<div class="image">
-								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
-							</div>
+						<div ng-mouseleave="showInfo = false" ng-show="showInfo" ng-click="addToCart(row.id)" class="onhover bcolor{{row.id}}">
 							<div class="desc">
-								<span>{{row.decs}}</span>
-								<hr/>
-								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
-								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
+								<span>{{row.decs}}</span><br/>
+								<span class="biig">{{row.cost}} <i class="fa fa-ruble"></i> / {{row.mass}} {{base.config.massaIcon}}</span>
+							</div>
+							<div class="image">
+								<img class="bcolor{{row.id}}" ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
@@ -264,15 +258,13 @@
 				</div>
 				<div class="row">
 					<div ng-repeat="row in tovari | filter: { category: 'sous' }" class="col-lg-4">
-						<div ng-mouseleave="showInfo = false" ng-show="showInfo" class="onhover bcolor{{row.id}}">
-							<div class="image">
-								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
-							</div>
+						<div ng-mouseleave="showInfo = false" ng-show="showInfo" ng-click="addToCart(row.id)" class="onhover bcolor{{row.id}}">
 							<div class="desc">
-								<span>{{row.decs}}</span>
-								<hr/>
-								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
-								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
+								<span>{{row.decs}}</span><br/>
+								<span class="biig">{{row.cost}} <i class="fa fa-ruble"></i> / {{row.mass}} {{base.config.massaIcon}}</span>
+							</div>
+							<div class="image">
+								<img class="bcolor{{row.id}}" ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
@@ -286,15 +278,13 @@
 				</div>
 				<div class="row">
 					<div ng-repeat="row in tovari | filter: { category: 'drink' }" class="col-lg-4">
-						<div ng-mouseleave="showInfo = false" ng-show="showInfo" class="onhover bcolor{{row.id}}">
-							<div class="image">
-								<img ng-src="img/zak/{{row.trans}}-hov.png"/>
-							</div>
+						<div ng-mouseleave="showInfo = false" ng-show="showInfo" ng-click="addToCart(row.id)" class="onhover bcolor{{row.id}}">
 							<div class="desc">
-								<span>{{row.decs}}</span>
-								<hr/>
-								<span>{{base.config.portions}}: {{row.mass}} {{base.config.massaIcon}}</span><br/>
-								<span>{{base.config.cost}}: {{row.cost}} {{base.config.costIcon}}</span>
+								<span>{{row.decs}}</span><br/>
+								<span class="biig">{{row.cost}} <i class="fa fa-ruble"></i> / {{row.mass}} {{base.config.massaIcon}}</span>
+							</div>
+							<div class="image">
+								<img class="bcolor{{row.id}}" ng-src="img/zak/{{row.trans}}-hov.png"/>
 							</div>
 						</div>
 						<img ng-class="{'ngrey': !ifsearchInCart(row.id)}" ng-src="img/zak/{{row.trans}}-gr.png"/>
